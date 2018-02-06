@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206113759) do
+ActiveRecord::Schema.define(version: 20180206145346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attendances", force: :cascade do |t|
-    t.string "name"
     t.date "date"
     t.string "status"
     t.datetime "created_at", null: false
@@ -25,7 +24,6 @@ ActiveRecord::Schema.define(version: 20180206113759) do
 
   create_table "contractors", force: :cascade do |t|
     t.string "name"
-    t.text "projects", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,14 +31,13 @@ ActiveRecord::Schema.define(version: 20180206113759) do
   create_table "overtimes", force: :cascade do |t|
     t.string "name"
     t.date "date"
-    t.time "othour"
+    t.time "ot_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.text "supervisors", default: [], array: true
     t.float "salary"
     t.time "over_time"
     t.float "total_cost"
@@ -50,14 +47,12 @@ ActiveRecord::Schema.define(version: 20180206113759) do
 
   create_table "supervisors", force: :cascade do |t|
     t.string "name"
-    t.text "projects", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "userid"
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,16 +64,15 @@ ActiveRecord::Schema.define(version: 20180206113759) do
     t.string "contractor"
     t.string "designation"
     t.string "scheme"
-    t.float "otmult"
-    t.float "otinc"
-    t.text "projects", default: [], array: true
+    t.float "ot_multiplier"
+    t.float "ot_incentive"
     t.float "advance"
     t.float "deduction"
     t.float "pf"
     t.time "overtime"
     t.float "incentive"
-    t.float "otamount"
-    t.float "inceamount"
+    t.float "ot_amount"
+    t.float "ince_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
